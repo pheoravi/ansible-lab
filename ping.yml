@@ -1,7 +1,15 @@
 ---
-- name: Test Infrastructure Ping
+- name: Test Infrastructure Management
   hosts: all
   gather_facts: false
   tasks:
-    - name: Check SSH ping
+    - name: Verify SSH ping
       ansible.builtin.ping:
+
+    - name: Create an enterprise audit file
+      ansible.builtin.copy:
+        content: |
+          Managed by Ansible & Semaphore
+          Provisioned on: {{ ansible_date_time.iso8601 | default('initial setup') }}
+        dest: /etc/ansible-managed.txt
+        mode: '0644'
