@@ -1,0 +1,7 @@
+---
+- name: Test Infrastructure Ping
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check SSH ping
+      ansible.builtin.ping:
