@@ -2,6 +2,7 @@
 - name: Test Infrastructure Management
   hosts: all
   gather_facts: false
+  become: true
   tasks:
     - name: Verify SSH ping
       ansible.builtin.ping:
@@ -10,6 +11,6 @@
       ansible.builtin.copy:
         content: |
           Managed by Ansible & Semaphore
-          Provisioned on: {{ ansible_date_time.iso8601 | default('initial setup') }}
+          Provisioned on: initial setup
         dest: /etc/ansible-managed.txt
         mode: '0644'
